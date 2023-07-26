@@ -61,4 +61,13 @@ class ImportedContact(models.Model):
             return f'{self.uploaded_by.email}-{self.uploaded_by.organization.name}'
         else:
             return f'{self.file}'
+        
+
+class ImportedContactErrorLog(models.Model):
+    imported_contact = models.ForeignKey(ImportedContact, on_delete=models.CASCADE)
+    log_message = models.TextField()
+
+    def __str__(self):
+        return str(self.imported_contact.id)
+
     
